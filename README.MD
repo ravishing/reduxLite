@@ -17,8 +17,7 @@
         'COMMON_ADD': 'COMMON_ADD'
     };
 
-### step1
-为每一种类型编写reducer
+### step1：为每一种类型编写reducer
     var mapActionTypeToReducer = {
         'field0.ADD': function(state, action) {
             return state = state || {
@@ -55,24 +54,19 @@
         ]
     };
 
-###step2
-组合所有的reducer为一个reducer
+###step2：组合所有的reducer为一个reducer
     var appReducer = createReducers(mapActionTypeToReducer);
 
-###step3
-创建store
+###step3：创建store
     var store = createStore(appReducer, INITIAL_STATE);
 
-###step4
-创建路由
+###step4：创建路由
     var dispatcher = store.dispatch;
 
-###step5
-getState
+###step5：获取程序状态
     var getState = store.getState
 
-###step6
-event
+###step6：订阅状态的变化
     var subscribe = store.subscribe;
 
 ###step7 
