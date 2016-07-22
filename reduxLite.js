@@ -17,18 +17,26 @@ var redux = function(Function, Array, Object) {
         };
     }
 
-    function _createReducers(mapActionTypeToReducer) {
-        var types = _keys(mapActionTypeToReducer);
-
-
-    }
-
     function combineReducers(mapFieldToReducer) {
         return function(state, action) {
             return _reduce(mapFieldToReducer, function(state, reducer, field) {
                 return state[field] = reducer(state[field], action), state;
             }, state);
         };
+    }
+
+    function _createReducers(mapActionTypeToReducer) {
+        var types = _keys(mapActionTypeToReducer);
+
+
+    }
+
+    function _combineActions(field, initialState) {
+        return function(mapActionTypeToCallback) {
+            var map = {};
+            map[field] = createReducer(initialState, mapActionTypeToCallback);
+            return map;
+        }
     }
 
 
