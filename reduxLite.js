@@ -17,7 +17,7 @@ var redux = function(Function, Array, Object) {
         };
     }
 
-    function $createReducers(mapActionTypeToReducer) {
+    function _createReducers(mapActionTypeToReducer) {
         var types = _keys(mapActionTypeToReducer);
 
 
@@ -31,19 +31,10 @@ var redux = function(Function, Array, Object) {
         };
     }
 
-    //native Code
-
-    var FunctionProto = Function.prototy;
-    var ArrayProto = Array.prototype;
-    var ObjectProto = Object.prototype;
-
-    var $call = FunctionProto.call;
-    var $reduce = ArrayProto.reduce;
-    var $map = ArrayProto.map;
-    var $keys = Object.keys;
 
 
-    //so...
+
+    //private
 
 
 
@@ -84,13 +75,44 @@ var redux = function(Function, Array, Object) {
         }
     }
 
+    function _keys1() {
+
+    }
+
+    function _map1() {
+
+    }
+
+    function _map2() {
+
+    }
+
+    function _reduce1() {
+
+    }
+
+    function _reduce2() {
+
+    }
+
+    //native Code
+
+    var FunctionProto = Function.prototy;
+    var ArrayProto = Array.prototype;
+    var ObjectProto = Object.prototype;
+
+    var $call = FunctionProto.call;
+    var $reduce = ArrayProto.reduce;
+    var $map = ArrayProto.map;
+    var $keys = Object.keys;
+
     var _call = _uncurrying($call);
     var _apply = _uncurrying(FunctionProto.apply);
     var _toString = _uncurrying(ObjectProto.toString);
 
     var _slice = _uncurrying(ArrayProto.slice);
 
-    var _isNull = _isSame(null)
+    var _isNull = _isSame(null);
     var _isUndefined = _isUndefined(void 0);
     var _isFunction = _Type('Function');
 
