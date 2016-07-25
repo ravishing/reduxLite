@@ -52,6 +52,10 @@ var redux = function(Function, Array, Object) {
         }
     }
 
+    function isArrayLike(x) {
+        return x && typeof x.length === 'number'
+    }
+
     function _Type(type) {
         return function(x) {
             return _toString(x) === '[object ' + type + ']';
@@ -105,8 +109,19 @@ var redux = function(Function, Array, Object) {
 
     }
 
-    function _reduce1() {
-
+    function _reduce1(flag) {
+        return function(xs, f, state) {
+            if (!isArrayLike(xs)) return null;
+            if (flag) {
+                xs = _slice(xs).reverse();
+            }
+            var i = _isUndefined(state) ? 0 : (state = xs[0], 1);
+            var l = xs.length;
+            while (i < l) {
+                state = _call(f, null, state, xs[i], i++, xs);
+            }
+            return state;
+        }
     }
 
     function _reduce2() {
