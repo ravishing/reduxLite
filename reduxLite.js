@@ -2,10 +2,10 @@ var redux = function(Function, Array, Object) {
     function createStore(reducer, state) {;
         return state = _assign({}, state), {
             dispatch: function(action) {
-                reducer(state, action);
+                state = reducer(state, action);
             },
             getState: function(params) {
-                return _assign({}, state);
+                return state;
             }
         };
     }
@@ -19,9 +19,9 @@ var redux = function(Function, Array, Object) {
 
     function combineReducers(mapFieldToReducer) {
         return function(state, action) {
-            return _reduce(mapFieldToReducer, function(state, reducer, field) {
-                return state[field] = reducer(state[field], action), state;
-            }, state);
+            return _reduce(mapFieldToReducer, function(state_, reducer, field) {
+                return state_[field] = reducer(state[field], action), state_;
+            }, {});
         };
     }
 
@@ -83,6 +83,16 @@ var redux = function(Function, Array, Object) {
         }
     }
 
+    function _compose() {
+        var args = arguments;
+        return function() {
+            return _reduceRight(args, function(state, x, k) {
+                return [_apply(x, null, state)];
+            }, arguments);
+
+        }
+    }
+
     function _keys1() {
 
     }
@@ -111,6 +121,7 @@ var redux = function(Function, Array, Object) {
 
     var $call = FunctionProto.call;
     var $reduce = ArrayProto.reduce;
+    var $reduceRight = ArrayProto.reduceRight;
     var $map = ArrayProto.map;
     var $keys = Object.keys;
 
@@ -126,6 +137,7 @@ var redux = function(Function, Array, Object) {
 
     var _has = _uncurrying(ObjectProto.hasOwnProperty);
 
-    var _reduce = _dispach(_invoker('reduce', $reduce), _reduce1, _reduce2);
+    var _reduce = _dispach(_invoker('reduce', $reduce), _reduce1(0), _reduce2(0));
+    var _reduceRight = _dispach(_invoker('reduceRight', $reduceRight), _reduce1(1), _reduce2(1));
     var _map = _dispach(_invoker('map', $map), _map1, _map2);
 }(Function, Array, Object);
